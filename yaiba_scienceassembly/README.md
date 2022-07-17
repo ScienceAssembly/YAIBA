@@ -1,0 +1,1 @@
+# This directory is only for Science Assembly (理系集会). Not expected to be used by others.
