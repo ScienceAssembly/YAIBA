@@ -51,9 +51,10 @@ class VRCYAIBAPlayerPositionEntry(Entry):
     location_x: float
     location_y: float
     location_z: Optional[float]  # Can be None for V0 (ScienceAssembly internal version; pre-YAIBA)
-    rotation_1: float
-    rotation_2: float
-    rotation_3: float
+
+    rotation_1: float  # rotation for x axis, pitch in unity
+    rotation_2: float  # rotation for y axis, yaw in unity
+    rotation_3: float  # rotation for z axis, roll in unity
 
     is_vr: bool
 
@@ -66,7 +67,7 @@ class VRCYAIBAPlayerPositionEntry(Entry):
         return cls(
             timestamp=Timestamp.from_json(value.get('timestamp')),
             player_id=VRCPlayerId(value.get('player_id')),
-            
+
             user_name=UserName(value.get('user_name')),
             pseudo_user_name=PseudoUserName(value.get('pseudo_user_name')),
 
