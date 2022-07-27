@@ -1,6 +1,7 @@
 from typing import TextIO, Union
 
 from yaiba.log import JsonDecoder, JsonEncoder, SessionLog, VRCLogParser
+from yaiba.visualization.vrc import VRCPlayerLocationPlotter
 
 
 def parse_vrchat_log(fp: Union[TextIO, str], config: VRCLogParser.Config = None) -> SessionLog:

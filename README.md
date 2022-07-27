@@ -5,7 +5,7 @@
 Want to analyze user logs in VRSNS like player location, head angle, questionnaire answers?
 This library is for the purpose!
 
-**DISCLAIMER: You have to collect user's acknowledgements when collecting / analyzing / utilizing their behavior logs.**
+![](https://raw.githubusercontent.com/ScienceAssembly/YAIBA/main/ipynb_examples/PlayerPositionPlot.gif)
 
 ## Features
 

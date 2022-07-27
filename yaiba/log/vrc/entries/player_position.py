@@ -49,8 +49,8 @@ class VRCYAIBAPlayerPositionEntry(Entry):
     pseudo_user_name: PseudoUserName
 
     location_x: float
-    location_y: float
-    location_z: Optional[float]  # Can be None for V0 (ScienceAssembly internal version; pre-YAIBA)
+    location_y: Optional[float]
+    location_z: float  # Can be None for V0 (ScienceAssembly internal version; pre-YAIBA)
 
     rotation_1: float  # rotation for x axis, pitch in unity
     rotation_2: float  # rotation for y axis, yaw in unity
@@ -95,7 +95,7 @@ class YAIBAPlayerPositionEntryParser(EntryParser):
     regex_entry_v0 = re.compile(
         VRC_REGEX_LOG_PREFIX +
         r'\[Player Position](?P<player_id>\d+),"(?P<user_name>.+)",'
-        r'(?P<location_x>[^,]*),(?P<location_y>[^,]*),'
+        r'(?P<location_x>[^,]*),(?P<location_z>[^,]*),'
         r'(?P<rotation_1>[^,]*),(?P<rotation_2>[^,]*),'
         r'(?P<rotation_3>[^,]*),'
         r'(?P<is_vr>[^,]*)'
@@ -125,7 +125,7 @@ class YAIBAPlayerPositionEntryParser(EntryParser):
         version = self._try_to_parse_version(raw_log)
         if version is not None:
             self.regex_entry_used = self.regex_entry_v1_0_0
-            if version.to_tuple() >= (1, 0, 0):
+            if version.to_tuple() > (1, 0, 0):
                 logger.warning(f"unexpected version is applied: {version}. Fallback to latest one")
             return version
 
@@ -157,10 +157,10 @@ class YAIBAPlayerPositionEntryParser(EntryParser):
         p_user_name = self.pseudonymizer.pseudonymize_user_name(user_name)
 
         location_x = float(match.group('location_x'))
-        location_y = float(match.group('location_y'))
-        location_z = match.groupdict().get("location_z", None)  # missing in v0. Return None.
-        if location_z is not None:
-            location_z = float(location_z)
+        location_y = match.groupdict().get("location_y", None)  # missing in v0. Return None.
+        if location_y is not None:
+            location_y = float(location_y)
+        location_z = float(match.group('location_z'))
         rotation_1 = float(match.group('rotation_1'))
         rotation_2 = float(match.group('rotation_2'))
         rotation_3 = float(match.group('rotation_3'))
