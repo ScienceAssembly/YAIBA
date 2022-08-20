@@ -42,7 +42,7 @@ class VRCPlayerLocationPlotter():
             options=self.room_names,
             value=default_room_name,
         )
-        self.play = Play(step=10, interval=1000)
+        self.play = Play(step=10, interval=500)
         self.slider = IntSlider()
 
         self.label_current_timestamp = Label("")
