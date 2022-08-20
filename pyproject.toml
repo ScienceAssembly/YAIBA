@@ -11,7 +11,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 ipywidgets = { version = "^7.7.1", extras = ["visualize"] }
 jupyter = { version = "^1.0.0", extras = ["visualize"] }
 plotly = { version = "^5.9.0", extras = ["visualize"] }
