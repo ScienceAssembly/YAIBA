@@ -7,7 +7,7 @@ from yaiba.log.vrc.utils import parse_timestamp
 
 class TestJsonEncoder:
     def test__normal(self):
-        options = JsonEncoder.Options.default()
+        options = JsonEncoder.Options.pseudonymized()
         encoder = JsonEncoder(options=options)
 
         log = SessionLog(
@@ -30,10 +30,10 @@ class TestJsonEncoder:
             ])
 
         assert encoder.encode(log) == (
-            '{"log_entries": [{"timestamp": 1646398219.0, "pseudo_user_name": "E.HOBA '
-            'Pseudo", "type_id": "vrc/player_join"}, {"timestamp": 1646398219.0, '
+            '{"log_entries": [{"timestamp": 1646430619.0, "pseudo_user_name": "E.HOBA '
+            'Pseudo", "type_id": "vrc/player_join"}, {"timestamp": 1646430619.0, '
             '"pseudo_user_name": "E.HOBA Pseudo", "type_id": "vrc/player_join"}, '
-            '{"timestamp": 1646398219.0, "pseudo_user_name": "E.HOBA Pseudo", "type_id": '
+            '{"timestamp": 1646430619.0, "pseudo_user_name": "E.HOBA Pseudo", "type_id": '
             '"vrc/player_join"}], "metadata": null}')
 
     def test__output_all_personal_info(self):
@@ -61,10 +61,10 @@ class TestJsonEncoder:
             ])
 
         assert encoder.encode(log) == (
-            '{"log_entries": [{"timestamp": 1646398219.0, "user_name": "E.HOBA", '
+            '{"log_entries": [{"timestamp": 1646430619.0, "user_name": "E.HOBA", '
             '"pseudo_user_name": "E.HOBA Pseudo", "type_id": "vrc/player_join"}, '
-            '{"timestamp": 1646398219.0, "user_name": "E.HOBA", "pseudo_user_name": '
-            '"E.HOBA Pseudo", "type_id": "vrc/player_join"}, {"timestamp": 1646398219.0, '
+            '{"timestamp": 1646430619.0, "user_name": "E.HOBA", "pseudo_user_name": '
+            '"E.HOBA Pseudo", "type_id": "vrc/player_join"}, {"timestamp": 1646430619.0, '
             '"user_name": "E.HOBA", "pseudo_user_name": "E.HOBA Pseudo", "type_id": '
             '"vrc/player_join"}], "metadata": null}')
 
@@ -105,10 +105,10 @@ class TestJsonDecoder:
         decoder = JsonDecoder()
 
         output = decoder.decode(
-            '{"log_entries": [{"timestamp": 1646398219.0, "user_name": "E.HOBA", '
+            '{"log_entries": [{"timestamp": 1646430619.0, "user_name": "E.HOBA", '
             '"pseudo_user_name": "E.HOBA Pseudo", "type_id": "vrc/player_join"}, '
-            '{"timestamp": 1646398219.0, "user_name": "E.HOBA", "pseudo_user_name": '
-            '"E.HOBA Pseudo", "type_id": "vrc/player_join"}, {"timestamp": 1646398219.0, '
+            '{"timestamp": 1646430619.0, "user_name": "E.HOBA", "pseudo_user_name": '
+            '"E.HOBA Pseudo", "type_id": "vrc/player_join"}, {"timestamp": 1646430619.0, '
             '"user_name": "E.HOBA", "pseudo_user_name": "E.HOBA Pseudo", "type_id": '
             '"vrc/player_join"}], "metadata": null}')
 

@@ -4,6 +4,8 @@ import datetime
 from abc import ABC, abstractmethod
 from typing import Any, Dict, TypeVar
 
+from yaiba.constants import DEFAULT_TIMEZONE
+
 
 class FromJson(ABC):
     @classmethod
@@ -15,7 +17,7 @@ class FromJson(ABC):
 class Timestamp(datetime.datetime, FromJson):
     @classmethod
     def from_json(cls, timestamp):
-        return cls.fromtimestamp(timestamp)
+        return cls.fromtimestamp(timestamp, tz=DEFAULT_TIMEZONE)
 
 
 class UserName(str):

@@ -1,6 +1,7 @@
 import re
 from typing import Union
 
+from yaiba.constants import DEFAULT_TIMEZONE
 from yaiba.log.types import RawEntry, Timestamp
 
 """
@@ -29,6 +30,7 @@ def create_timestamp_from_match(match: re.Match) -> Timestamp:
         hour=int(match.group('hour')),
         minute=int(match.group('minute')),
         second=int(match.group('second')),
+        tzinfo=DEFAULT_TIMEZONE,
     )
 
 
