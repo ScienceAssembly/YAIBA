@@ -37,6 +37,15 @@ class JsonEncoder:
                 output_user_name=True,
             )
 
+        @classmethod
+        def pseudonymized(cls):
+            return cls(
+                output_timestamp=True,
+                output_pseudo_user_name=True,
+                output_vrc_player_id=True,
+                output_user_name=False,
+            )
+
     def __init__(self, options: Optional[Options] = None):
         if options is None:
             options = JsonEncoder.Options.default()
@@ -53,7 +62,6 @@ class JsonEncoder:
             return self._dataclasses_shadow_asdict(o)
         if isinstance(o, Entry):
             if dataclasses.is_dataclass(o):
-
                 values = self._make_safe_to_store(self._dataclasses_shadow_asdict(o))
                 values[ENTRY_TYPE_ID_ATTR_NAME] = o.type_id()
                 return values
