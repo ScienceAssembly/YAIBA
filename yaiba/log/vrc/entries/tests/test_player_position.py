@@ -50,6 +50,9 @@ class TestYAIBAPlayerPositionEntry:
         ))
 
         assert isinstance(output, VRCYAIBAPlayerPositionEntry)
+        assert isinstance(output.user_name, UserName)
+        assert isinstance(output.player_id, VRCPlayerId)
+        assert isinstance(output.pseudo_user_name, PseudoUserName)
         assert output == VRCYAIBAPlayerPositionEntry(
             timestamp=parse_timestamp('2022.03.04 21:57:53'),
             player_id=VRCPlayerId(13),
@@ -73,6 +76,9 @@ class TestYAIBAPlayerPositionEntry:
         ))
 
         assert isinstance(output, VRCYAIBAPlayerPositionEntry)
+        assert isinstance(output.user_name, UserName)
+        assert isinstance(output.player_id, VRCPlayerId)
+        assert isinstance(output.pseudo_user_name, PseudoUserName)
         assert output == VRCYAIBAPlayerPositionEntry(
             timestamp=parse_timestamp('2022.03.04 21:57:53'),
             player_id=VRCPlayerId(13),
@@ -107,6 +113,9 @@ class TestYAIBAPlayerPositionEntry:
         ))
 
         assert isinstance(output, VRCYAIBAPlayerPositionEntry)
+        assert isinstance(output.user_name, UserName)
+        assert isinstance(output.player_id, VRCPlayerId)
+        assert isinstance(output.pseudo_user_name, PseudoUserName)
         assert output == VRCYAIBAPlayerPositionEntry(
             timestamp=parse_timestamp('2022.03.04 21:57:53'),
             player_id=VRCPlayerId(13),
@@ -133,6 +142,9 @@ class TestYAIBAPlayerPositionEntry:
         ))
 
         assert isinstance(output, VRCYAIBAPlayerPositionEntry)
+        assert isinstance(output.user_name, UserName)
+        assert isinstance(output.player_id, VRCPlayerId)
+        assert isinstance(output.pseudo_user_name, PseudoUserName)
         assert output == VRCYAIBAPlayerPositionEntry(
             timestamp=parse_timestamp('2022.03.04 21:57:53'),
             player_id=VRCPlayerId(13),
@@ -161,5 +173,8 @@ class TestYAIBAPlayerPositionEntry:
             rotation_3=-2.619154,
             is_vr=True,
         )
-
+        
         assert encode_and_then_decode(entry) == entry
+        assert isinstance(entry.user_name, UserName)
+        assert isinstance(entry.player_id, VRCPlayerId)
+        assert isinstance(entry.pseudo_user_name, PseudoUserName)

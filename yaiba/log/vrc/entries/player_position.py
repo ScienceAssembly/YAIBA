@@ -152,8 +152,8 @@ class YAIBAPlayerPositionEntryParser(EntryParser):
         timestamp = create_timestamp_from_match(match)
         player_id = VRCPlayerId(match.group('player_id'))
 
-        user_name = UserName(match.group('user_name'))
-        user_name = user_name.replace('""', '"')  # Following CSV Escape 
+        user_name = match.group('user_name').replace('""', '"')  # Following CSV Escape
+        user_name = UserName(user_name)
         p_user_name = self.pseudonymizer.pseudonymize_user_name(user_name)
 
         location_x = float(match.group('location_x'))

@@ -18,7 +18,7 @@ def parse_vrchat_log(fp: Union[TextIO, str], config: VRCLogParser.Config = None)
 
 
 def save_session_log(session_log: SessionLog, fp: TextIO, options: JsonEncoder.Options = None):
-    encoder = JsonEncoder(options)
+    encoder = JsonEncoder(options=options)
     fp.write(encoder.encode(session_log))
 
 

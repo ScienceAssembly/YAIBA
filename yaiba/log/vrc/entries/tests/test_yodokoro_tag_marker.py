@@ -1,5 +1,5 @@
 from yaiba.log.test_utils import encode_and_then_decode
-from yaiba.log.types import RawEntry
+from yaiba.log.types import RawEntry, VRCPlayerId
 from yaiba.log.vrc.entries.yodokoro_tag_marker import TAG_NAMES_USED_IN_SCIENCE_ASSEMBLY, VRCYodokoroTagMarkerEntry, \
     YodokoroTagMarkerEntryParser
 from yaiba.log.vrc.utils import parse_timestamp
@@ -46,6 +46,7 @@ class TestYodokoroTagMarkerEntry:
             "00000000],"
         ))
         assert isinstance(output, VRCYodokoroTagMarkerEntry)
+        assert all(isinstance(k, VRCPlayerId) for k in output.tag_names_for_player_id.keys())
         assert output == VRCYodokoroTagMarkerEntry(
             timestamp=parse_timestamp("2022.03.05 00:31:57"),
             tag_names_for_player_id={
@@ -78,7 +79,6 @@ class TestYodokoroTagMarkerEntry:
                 98: ['機械工学']
             },
         )
-
 
     def test__from_json(self):
         entry = VRCYodokoroTagMarkerEntry(
@@ -113,4 +113,6 @@ class TestYodokoroTagMarkerEntry:
                 98: ['機械工学']
             },
         )
-        assert encode_and_then_decode(entry) == entry
+        output = encode_and_then_decode(entry)
+        assert output == entry
+        assert all(isinstance(k, VRCPlayerId) for k in output.tag_names_for_player_id.keys())
