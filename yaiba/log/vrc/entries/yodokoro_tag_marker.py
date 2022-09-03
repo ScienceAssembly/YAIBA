@@ -14,8 +14,28 @@ from yaiba.log.types import RawEntry, Timestamp, VRCPlayerId
 from yaiba.log.vrc.utils import VRC_REGEX_LOG_PREFIX, create_timestamp_from_match
 
 TAG_NAMES_USED_IN_SCIENCE_ASSEMBLY = [
-    '機械工学', '電気系工学', '物理工学', '物理学', '化学', '生物学', '天文学', '数学', '農学',
-    '環境学', '薬学', '情報学', '医学', '土木工学', '地学', '製造学', '文系', 'その他',
+    "機械工学",
+    "電気系工学",
+    "物理工学",
+    "物理学",
+    "化学",
+    "生物学",
+    "天文学",
+    "数学",
+    "農学",
+    "環境学",
+    "薬学",
+    "情報学",
+    "医学",
+    "土木工学",
+    "地学",
+    "製造学",
+    "文系",
+    "その他",
+    "初めて来ました",
+    "聞きたい",
+    "話したい",
+    "議論したい",
 ]
 
 
