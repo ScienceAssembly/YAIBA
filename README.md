@@ -37,7 +37,7 @@ session_log.metadata = {
 # Save SessionLog to file
 with open("XXXX.json", "w") as fp:
     # Only stores pseudonymized username
-    options = yaiba.JsonEncode.Options.default()
+    options = yaiba.JsonEncoder.Options.default()
     options.output_pseudo_user_name = True
     options.output_user_name = False
 
