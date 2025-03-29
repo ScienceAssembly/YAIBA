@@ -12,11 +12,8 @@
 ### Setting up YAIBA
 
 ```bash
-# Create and activate a new virtual environment
-poetry env use python3.8
-
 # Install dependencies with visualization support
-poetry install --extras "visualize"
+poetry install --all-groups
 
 # Start Jupyter Lab
 poetry run jupyter lab
