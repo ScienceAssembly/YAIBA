@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "YAIBA"
-version = "0.8.1"
+version = "0.9.0"
 description = "Yet Another Interactive Behavior Analysis tool for VRSNS."
 authors = ["ScienceAssembly"]
 license = "MIT"
