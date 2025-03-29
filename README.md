@@ -6,7 +6,7 @@
 
 ### Prerequisites
 
-- Python (>=3.8, <3.12)
+- Python (>=3.9)
 - Poetry (for package management)
 
 ### Setting up YAIBA
