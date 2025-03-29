@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import io
+import re
 import typing
 from dataclasses import dataclass, field
 from typing import List, Optional
@@ -95,37 +96,24 @@ def _iter_per_vrc_log_entry(fp: typing.TextIO):
     :return: 
     :rtype: 
     """
-    return filter(lambda line: len(line) > 0, _iter_per_vrc_log_entry_internal(fp))
+    return filter(lambda line: len(line) > 0, _iter_per_timestamp_line(fp))
 
 
-def _iter_per_vrc_log_entry_internal(fp: typing.TextIO):
+VRC_TIMESTAMP_REGEX = re.compile(r"\d{4}\.\d{2}\.\d{2} \d{2}:\d{2}:\d{2} Log.*")
+
+
+def _iter_per_timestamp_line(fp: typing.TextIO):
     log_entry_lines = []
-    num_empty_line = 0
-    while fp.readable():
+    count_empty_lines = 0
+    while True:
         line = fp.readline()
-        if line == '':
-            # EOF
-            break
-        line = line.replace('\r', '')
-        line = line.rstrip('\n')
-
-        if line == '':
-            num_empty_line += 1
-            if num_empty_line == 2:
-                # New log entry
-                yield '\n'.join(log_entry_lines).lstrip('\n')
-                log_entry_lines = []
-                num_empty_line = 0
-            continue
-
-        # line != ''
-
-        if num_empty_line > 0:
-            # intermediate empty line
-            for _ in range(num_empty_line):
-                log_entry_lines.append('')
-            num_empty_line = 0
-
+        if VRC_TIMESTAMP_REGEX.match(line):
+            if len(log_entry_lines) > 0:
+                yield '\n'.join(log_entry_lines).strip('\n')
+            log_entry_lines = []
         log_entry_lines.append(line)
-    if len(log_entry_lines) > 0:
-        yield '\n'.join(log_entry_lines)
+        if line == '':
+            count_empty_lines += 1
+        if count_empty_lines >= 100:
+            break
+    yield '\n'.join(log_entry_lines).strip('\n')
