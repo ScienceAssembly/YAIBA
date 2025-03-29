@@ -11,12 +11,12 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = ">=3.8,<3.12"
 ipywidgets = { version = "^7.7.1", extras = ["visualize"] }
 jupyter = { version = "^1.0.0", extras = ["visualize"] }
 plotly = { version = "^5.9.0", extras = ["visualize"] }
 jupyterlab = { version = "^3.4.4", extras = ["visualize"] }
-pandas = { version = "^1.4.3", extras = ["visualize"] }
+pandas = { version = "^1.5.0", extras = ["visualize"] }
 
 [tool.poetry.extras]
 visualize = ["ipywidgets", "jupyter", "plotly", "jupyterlab", "pandas"]

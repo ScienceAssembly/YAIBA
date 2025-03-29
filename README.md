@@ -2,6 +2,26 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1fqfbRb6w7VzDEXGho6KWOLFVfQFU0WlS?usp=sharing)
 
+## Installation
+
+### Prerequisites
+
+- Python (>=3.8, <3.12)
+- Poetry (for package management)
+
+### Setting up YAIBA
+
+```bash
+# Create and activate a new virtual environment
+poetry env use python3.8
+
+# Install dependencies with visualization support
+poetry install --extras "visualize"
+
+# Start Jupyter Lab
+poetry run jupyter lab
+```
+
 Want to analyze user logs in VRSNS like player location, head angle, questionnaire answers?
 This library is for the purpose!
 
@@ -37,7 +57,7 @@ session_log.metadata = {
 # Save SessionLog to file
 with open("XXXX.json", "w") as fp:
     # Only stores pseudonymized username
-    options = yaiba.JsonEncode.Options.default()
+    options = yaiba.JsonEncoder.Options.default()
     options.output_pseudo_user_name = True
     options.output_user_name = False
 
