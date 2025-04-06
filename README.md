@@ -74,6 +74,9 @@ joined_user_names = set([
 print(f"The number of unique user joined: {len(joined_user_names)}")
 ```
 
+### Questionnaire analysis
+https://colab.research.google.com/drive/1GtBARBFPd2Yz4R5BVm63XfKnhBrER4ub
+
 ### Yodokoro tag marker customization
 
 ```python
