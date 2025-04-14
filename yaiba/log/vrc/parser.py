@@ -99,14 +99,14 @@ def _iter_per_vrc_log_entry(fp: typing.TextIO):
     return filter(lambda line: len(line) > 0, _iter_per_timestamp_line(fp))
 
 
-VRC_TIMESTAMP_REGEX = re.compile(r"\d{4}\.\d{2}\.\d{2} \d{2}:\d{2}:\d{2} Log.*")
+VRC_TIMESTAMP_REGEX = re.compile(r"\d{4}\.\d{2}\.\d{2} \d{2}:\d{2}:\d{2} .*")
 
 
 def _iter_per_timestamp_line(fp: typing.TextIO):
     log_entry_lines = []
     count_empty_lines = 0
     while True:
-        line = fp.readline()
+        line = fp.readline().rstrip('\n')
         if VRC_TIMESTAMP_REGEX.match(line):
             if len(log_entry_lines) > 0:
                 yield '\n'.join(log_entry_lines).strip('\n')
