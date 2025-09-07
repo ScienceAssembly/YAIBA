@@ -103,8 +103,8 @@ class YAIBAPlayerPositionEntryParser(EntryParser):
         VRC_REGEX_LOG_PREFIX +
         r'\[Player Position](?P<player_id>\d+),"(?P<user_name>.+)",'
         r'(?P<location_x>[^,]*),(?P<location_z>[^,]*),'
-        r'(?P<rotation_1>[^,]*),(?P<rotation_2>[^,]*),(?P<rotation_3>[^,]*),'
-        r'(?P<velocity_x>[^,]*),(?P<velocity_y>[^,]*),(?P<velocity_z>[^,]*),'
+        r'(?P<rotation_1>[^,]*),(?P<rotation_2>[^,]*),'
+        r'(?P<rotation_3>[^,]*),'
         r'(?P<is_vr>[^,]*)'
     )
 
@@ -112,8 +112,8 @@ class YAIBAPlayerPositionEntryParser(EntryParser):
         VRC_REGEX_LOG_PREFIX +
         r'\[Player Position](?P<player_id>\d+),"(?P<user_name>.+)",'
         r'(?P<location_x>[^,]*),(?P<location_y>[^,]*),(?P<location_z>[^,]*),'
-        r'(?P<rotation_1>[^,]*),(?P<rotation_2>[^,]*),'
-        r'(?P<rotation_3>[^,]*),'
+        r'(?P<rotation_1>[^,]*),(?P<rotation_2>[^,]*),(?P<rotation_3>[^,]*),'
+        r'(?P<velocity_x>[^,]*),(?P<velocity_y>[^,]*),(?P<velocity_z>[^,]*),'
         r'(?P<is_vr>[^,]*)'
     )
 
