@@ -56,6 +56,10 @@ class VRCYAIBAPlayerPositionEntry(Entry):
     rotation_2: float  # rotation for y axis, yaw in unity
     rotation_3: float  # rotation for z axis, roll in unity
 
+    velocity_x: Optional[float]
+    velocity_y: Optional[float]
+    velocity_z: Optional[float]
+
     is_vr: bool
 
     @classmethod
@@ -77,6 +81,9 @@ class VRCYAIBAPlayerPositionEntry(Entry):
             rotation_1=value.get('rotation_1'),
             rotation_2=value.get('rotation_2'),
             rotation_3=value.get('rotation_3'),
+            velocity_x=value.get('velocity_x'),
+            velocity_y=value.get('velocity_y'),
+            velocity_z=value.get('velocity_z'),
 
             is_vr=value.get('is_vr'),
         )
@@ -96,8 +103,8 @@ class YAIBAPlayerPositionEntryParser(EntryParser):
         VRC_REGEX_LOG_PREFIX +
         r'\[Player Position](?P<player_id>\d+),"(?P<user_name>.+)",'
         r'(?P<location_x>[^,]*),(?P<location_z>[^,]*),'
-        r'(?P<rotation_1>[^,]*),(?P<rotation_2>[^,]*),'
-        r'(?P<rotation_3>[^,]*),'
+        r'(?P<rotation_1>[^,]*),(?P<rotation_2>[^,]*),(?P<rotation_3>[^,]*),'
+        r'(?P<velocity_x>[^,]*),(?P<velocity_y>[^,]*),(?P<velocity_z>[^,]*),'
         r'(?P<is_vr>[^,]*)'
     )
 
@@ -164,6 +171,17 @@ class YAIBAPlayerPositionEntryParser(EntryParser):
         rotation_1 = float(match.group('rotation_1'))
         rotation_2 = float(match.group('rotation_2'))
         rotation_3 = float(match.group('rotation_3'))
+
+        velocity_x = match.groupdict().get("velocity_x", None)  # missing in v0. Return None.
+        if velocity_x is not None:
+            velocity_x = float(velocity_x)
+        velocity_y = match.groupdict().get("velocity_y", None)  # missing in v0. Return None.
+        if velocity_y is not None:
+            velocity_y = float(velocity_y)
+        velocity_z = match.groupdict().get("velocity_z", None)  # missing in v0. Return None.
+        if velocity_z is not None:
+            velocity_z = float(velocity_z)
+
         is_vr = match.group('is_vr').lower() == "true"
 
         return VRCYAIBAPlayerPositionEntry(
@@ -180,6 +198,10 @@ class YAIBAPlayerPositionEntryParser(EntryParser):
             rotation_1=rotation_1,
             rotation_2=rotation_2,
             rotation_3=rotation_3,
+
+            velocity_x=velocity_x,
+            velocity_y=velocity_y,
+            velocity_z=velocity_z,
 
             is_vr=is_vr,
         )
