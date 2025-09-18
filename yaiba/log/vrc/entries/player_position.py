@@ -172,15 +172,9 @@ class YAIBAPlayerPositionEntryParser(EntryParser):
         rotation_2 = float(match.group('rotation_2'))
         rotation_3 = float(match.group('rotation_3'))
 
-        velocity_x = match.groupdict().get("velocity_x", None)  # missing in v0. Return None.
-        if velocity_x is not None:
-            velocity_x = float(velocity_x)
-        velocity_y = match.groupdict().get("velocity_y", None)  # missing in v0. Return None.
-        if velocity_y is not None:
-            velocity_y = float(velocity_y)
-        velocity_z = match.groupdict().get("velocity_z", None)  # missing in v0. Return None.
-        if velocity_z is not None:
-            velocity_z = float(velocity_z)
+        velocity_x = float(match.group("velocity_x"))
+        velocity_y = float(match.group("velocity_y"))
+        velocity_z = float(match.group("velocity_z"))
 
         is_vr = match.group('is_vr').lower() == "true"
 

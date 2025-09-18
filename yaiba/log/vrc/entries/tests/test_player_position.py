@@ -96,7 +96,7 @@ class TestYAIBAPlayerPositionEntry:
     def test__regex_v1_0_0(self):
         output = YAIBAPlayerPositionEntryParser.regex_entry_v0.match(
             '2022.03.04 21:57:53 Log        -  [Player Position]13,"E.HOBA",-1.622916,1.637101,1.937101,230.3723,'
-            '-3.32147,-2.619154,True'
+            '-3.32147,-2.619154,-0.03742229,-0.007943284,0.0001138111,True'
         )
 
         assert output is not None
@@ -109,7 +109,7 @@ class TestYAIBAPlayerPositionEntry:
 
         output = parser.parse(RawEntry(
             '2022.03.04 21:57:53 Log        -  [Player Position]13,"E.HOBA",-1.622916,1.637101,1.937101,230.3723,'
-            '-3.32147,-2.619154,True'
+            '-3.32147,-2.619154,-0.03742229,-0.007943284,0.0001138111,True'
         ))
 
         assert isinstance(output, VRCYAIBAPlayerPositionEntry)
@@ -127,6 +127,9 @@ class TestYAIBAPlayerPositionEntry:
             rotation_1=pytest.approx(230.3723),
             rotation_2=pytest.approx(-3.32147),
             rotation_3=pytest.approx(-2.619154),
+            velocity_x=pytest.approx(-0.03742229),
+            velocity_y=pytest.approx(-0.007943284),
+            velocity_z=pytest.approx(0.0001138111),
             is_vr=True,
         )
 
@@ -138,7 +141,7 @@ class TestYAIBAPlayerPositionEntry:
 
         output = parser.parse(RawEntry(
             '2022.03.04 21:57:53 Log        -  [Player Position]13,"E"".""HOBA",-1.622916,1.637101,1.937101,230.3723,'
-            '-3.32147,-2.619154,True'
+            '-3.32147,-2.619154,-0.03742229,-0.007943284,0.0001138111,True'
         ))
 
         assert isinstance(output, VRCYAIBAPlayerPositionEntry)
@@ -156,6 +159,9 @@ class TestYAIBAPlayerPositionEntry:
             rotation_1=pytest.approx(230.3723),
             rotation_2=pytest.approx(-3.32147),
             rotation_3=pytest.approx(-2.619154),
+            velocity_x=pytest.approx(-0.03742229),
+            velocity_y=pytest.approx(-0.007943284),
+            velocity_z=pytest.approx(0.0001138111),
             is_vr=True,
         )
 
@@ -166,11 +172,15 @@ class TestYAIBAPlayerPositionEntry:
             user_name=UserName('E"."HOBA'),
             pseudo_user_name=PseudoUserName("pseudo E.HOBA"),
             location_x=-1.622916,
-            location_y=1.637101,
+            # location_y=1.637101,  # y値有りケース
+            location_y=None,  # y値無しケース
             location_z=1.937101,
             rotation_1=230.3723,
             rotation_2=-3.32147,
             rotation_3=-2.619154,
+            velocity_x=-0.03742229,
+            velocity_y=-0.007943284,
+            velocity_z=0.0001138111,
             is_vr=True,
         )
         
