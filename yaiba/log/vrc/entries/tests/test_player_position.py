@@ -41,16 +41,6 @@ class TestYAIBAPlayerPositionEntry:
 
         assert output is not None
 
-    """
-    v0ケースは不要とのことで、削除
-    def test__parse_v0(self): ...
-    """
-
-    """
-    v0ケースは不要とのことで、削除
-    def test__parse_v0__user_name_contains_double_quotes__unescape(self): ...
-    """
-
     def test__regex_v1_0_0(self):
         output = YAIBAPlayerPositionEntryParser.regex_entry_v1_0_0.match(
             '2022.03.04 21:57:53 Log        -  [Player Position]13,"E.HOBA",-1.622916,1.637101,1.937101,230.3723,'
